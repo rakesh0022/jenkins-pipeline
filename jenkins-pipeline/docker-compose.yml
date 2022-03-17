@@ -1,5 +1,5 @@
 version: '3'
-services: 123
+services:
   jenkins:
     container_name: jenkins
     image: jenkins/docker
