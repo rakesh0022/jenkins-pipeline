@@ -1,6 +1,7 @@
 resource "google_kms_crypto_key" "crypto_key" {
     name = var.key_name
     key_ring = var.key_ring
+    destroy_Schedule_Duration = var.destroy_Schedule_Duration
 
     purpose = var.purpose
 
@@ -14,13 +15,13 @@ resource "google_kms_crypto_key" "crypto_key" {
     rotation_period = var.rotation_period
 
     lifecycle {
-      prevent_destroy = fals
+      prevent_destroy = false
     }
     labels = local.labels
 
 }
 
- destroy_Schedule_Duration = var.destroy_Schedule_Duration
+ 
 
  resource "google_kms_crypto_key_iam_member" "iam_member" {
      for_each = var.use_iam_binding ? {} : local.iam_additive
@@ -37,6 +38,6 @@ resource "google_kms_crypto_key" "crypto_key" {
      crypto_key_id = google_kms_crypto_key.crypto_key.self_link
      role = each.key
      members = each.value
-     
+
    
  }

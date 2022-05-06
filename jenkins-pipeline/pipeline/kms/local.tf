@@ -34,3 +34,5 @@ default_algorithms = {
 algorithm = var.algorithm == null ? local.default_algorithms[local.purpose] : var.algorithm
 
 labels = merge(data.google_projecr.project.labels, var.labels)
+
+}
